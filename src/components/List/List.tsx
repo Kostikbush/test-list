@@ -1,6 +1,5 @@
 "use client";
-import { createRef, FC, memo, RefObject, useCallback, useRef } from "react";
-import ReactDOM from "react-dom";
+import { createRef, FC, memo, RefObject, useCallback } from "react";
 
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 
