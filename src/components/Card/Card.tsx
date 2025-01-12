@@ -1,4 +1,5 @@
 import Image from "next/image";
+import * as motion from "motion/react-client";
 import { FC } from "react";
 
 interface CardPropsType {
@@ -14,8 +15,21 @@ export const Card: FC<CardPropsType> = ({
   id,
   deleteCountry,
 }) => {
+  const deleteItem = () => deleteCountry(id);
+
   return (
-    <div className="flex justify-between items-center bg-slate-100 shadow-md">
+    <motion.div
+      layout
+      layoutId={id}
+      initial={{ transform: "translateX(0)" }}
+      animate={{ transform: "translateX(0)" }}
+      exit={{
+        opacity: 0,
+        transform: "translateX(330px)",
+      }}
+      className="flex justify-between items-center bg-slate-100 shadow-md h-8"
+      key="box"
+    >
       <article className="flex gap-4">
         <span>{name_ru}</span>
         {flag_url && (
@@ -29,14 +43,11 @@ export const Card: FC<CardPropsType> = ({
       </article>
 
       <button
-        onClick={() => {
-          console.log("WsdkCVLM");
-          deleteCountry(id);
-        }}
+        onClick={deleteItem}
         className="bg-gray-600 text-white p-1 rounded-sm text-xs"
       >
         удалить
       </button>
-    </div>
+    </motion.div>
   );
 };
